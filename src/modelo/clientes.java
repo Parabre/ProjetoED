@@ -1,6 +1,8 @@
 package modelo;
 
-public class clientes {
+import interfaces.classeGenerica;
+
+public class clientes implements classeGenerica {
 	
 	public String getRg() {
 		return rg;
@@ -19,6 +21,17 @@ public class clientes {
 	
 	private String rg;
 	private String nome;
+	@Override
+	
+	public String getAll() {
+		
+		return "Nome: " + this.getNome() +  " RG:" + this.getRg(); 
+	}
+	@Override
+	public String nameClass() {
+		return  "clientes";
+	
+	}
 
 	
 

@@ -1,13 +1,15 @@
 package modelo;
 
-public class NO {
+import interfaces.classeGenerica;
 
-		public clientes cliente;
-		public NO prox;
+public class NO <T extends classeGenerica> {
+
+		public T obj;
+		public NO<T> prox;
 
 		
-		public NO(clientes  e){
-			cliente=e;
+		public NO(T  obj){
+			this.obj=obj;
 			prox=null;
 		}
 }

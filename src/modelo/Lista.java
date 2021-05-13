@@ -1,112 +1,81 @@
 package modelo;
 
 import javax.swing.JOptionPane;
+import interfaces.classeGenerica;
+import interfaces.impGeneric;
 
-public class Lista {
-	private NO inicio;
+public class Lista <T extends classeGenerica> implements impGeneric<T> {
+	private NO<T> node;
 
 	public Lista(){
-		inicio=null;
+		this.node=null;
 	}
 
 
-	public void cadastrar(clientes e){
-		NO n = new NO(e);
-		n.prox=inicio;
-		inicio=n;
+	@Override
+	public void cadastrar(T obj){
+		NO<T> n = new NO<T>(obj);
+		n.prox = this.node;
+		this.node = n;
 	}
+	
 
-	public clientes RemoveFinal(){
-		clientes r = null;
+	public T RemoveFinal(){
+		T objReturn = null;
 		
-		if (inicio==null){
+		if (this.node==null){
 			JOptionPane.showMessageDialog(null, "Lista Vázia");
 		}
 		else{
-			if (inicio.prox==null){
-				r=inicio.cliente;
-				inicio=null;
+			if (this.node.prox==null){
+				objReturn= this.node.obj;
+				this.node= null;
 			}
 			else{
-				NO aux1=inicio;
-				NO aux2=inicio;
+				NO<T> aux1=this.node;
+				NO<T> aux2= null;
 
 				while(aux1.prox!=null){
 					aux2=aux1;
 					aux1=aux1.prox;
 				}
 
-				r=aux1.cliente;
+				objReturn =aux1.obj;
 				aux2.prox=null;
 			}
 		}
-		return r;
-	}
-
-	public clientes RemoveInicio(){
-		clientes r = null;
-		if (inicio==null){
-			JOptionPane.showMessageDialog(null,"Lista Vázia");
-		}
-		else{
-			r=inicio.cliente;
-			inicio=inicio.prox;
-		}
-		return r;
+		return objReturn;
 	}
 
 
 
-//	public clientes escolheRemove(clientes pos){
-//		clientes e=-1;
-//		clientes i=1;
-//		NO aux=inicio;
-//
-//		if(inicio==null){
-//			JOptionPane.showMessageDialog(null, "Lista Vazia!");
-//			return e;
-//		}    
-//		if(pos==1){// NOVA CONDIÇÃO. TODA VEZ QUE A POS FOR 1, O ITEM REMOVIDO SERÁ O PRIMEIRO
-//			e=RemoveInicio();
-//			return e;
-//		}else{           
-//			while(aux.prox!=null){
-//				aux=aux.prox;
-//				i++;
-//			}
-//			if(pos>i || pos<=0){
-//				JOptionPane.showMessageDialog(null, "Posição Invalida!");
-//				return e;
-//			}else if(pos==i){
-//				e=RemoveFinal();
-//				return e;
-//			}else{
-//				aux=inicio;
-//				NO aux2=aux;
-//
-//				while(pos>1){
-//					aux2=aux;
-//					aux=aux.prox;
-//					pos--;
-//				}
-//				e=aux.dado;
-//				aux2.prox=aux.prox;
-//				return e;
-//			}
-//		}        
-//	}
 
 	public String percorre(){
-		NO aux=inicio;
+		NO<T> aux= this.node;
 		String r=" ";
 		
 		while(aux!=null){
 		
-			System.out.println("Nome do cidadao: " + aux.cliente.getNome() + " RG:" + aux.cliente.getRg());
-			
+			r += "\n "+ aux.obj.getAll();
 			aux=aux.prox;
-			
 		}
+		
 		return r;
 	}
+
+
+	@Override
+	public T RemoveFinal(T obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public T RemoveInicio(T obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 }
