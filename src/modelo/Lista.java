@@ -20,44 +20,18 @@ public class Lista <T extends classeGenerica> implements impGeneric<T> {
 	}
 	
 
-	public T RemoveFinal(){
-		T objReturn = null;
-		
-		if (this.node==null){
-			JOptionPane.showMessageDialog(null, "Lista Vázia");
-		}
-		else{
-			if (this.node.prox==null){
-				objReturn= this.node.obj;
-				this.node= null;
-			}
-			else{
-				NO<T> aux1=this.node;
-				NO<T> aux2= null;
-
-				while(aux1.prox!=null){
-					aux2=aux1;
-					aux1=aux1.prox;
-				}
-
-				objReturn =aux1.obj;
-				aux2.prox=null;
-			}
-		}
-		return objReturn;
-	}
-
-
-
-
 	public String percorre(){
+		
 		NO<T> aux= this.node;
 		String r=" ";
+		int n = 1;
+	
 		
 		while(aux!=null){
 		
-			r += "\n "+ aux.obj.getAll();
+			r += "\n " + n + " - " + aux.obj.getAll();
 			aux=aux.prox;
+			n++;
 		}
 		
 		return r;
@@ -65,17 +39,98 @@ public class Lista <T extends classeGenerica> implements impGeneric<T> {
 
 
 	@Override
-	public T RemoveFinal(T obj) {
-		// TODO Auto-generated method stub
-		return null;
+	public T RemoveFinal() {
+		T obj = null;
+		if (this.node == null) {
+			JOptionPane.showMessageDialog(null, "Lista Vázia");
+		} else {
+			if (this.node.prox == null) {
+				obj = this.node.obj;
+				this.node = null;
+			} else {
+				NO<T> aux1 = this.node;
+				NO<T> aux2 = this.node;
+
+				while (aux1.prox != null) {
+					aux2 = aux1;
+					aux1 = aux1.prox;
+				}
+				obj = aux1.obj;
+				aux2.prox = null;
+			}
+		}
+		return obj;
+		
 	}
 
 
 	@Override
-	public T RemoveInicio(T obj) {
+	public T RemoveInicio() {
+		T obj = null;
+		if (this.node == null) {
+			JOptionPane.showMessageDialog(null, "Lista Vázia");
+		} else {
+			obj = this.node.obj;
+			this.node = this.node.prox;
+		}
+		return obj;
+		
+	}
+
+
+
+
+	@Override
+	public T RemoveAt(int pos) {
+			T obj;
+			int i=1;
+			NO<T> aux=this.node;
+
+			if(this.node==null){
+				System.out.println("Lista Vazia!");
+				return null;
+			} 
+			if (pos == 1) {
+				obj = RemoveInicio();
+				
+				return obj;
+			}
+			         
+				while(aux.prox!=null){
+					aux=aux.prox;
+					i++;
+				}
+				if(pos>i || pos==0){
+					System.out.println("Posição Invalida!");
+					return null;
+				
+				} else if(pos == i) {
+					obj = RemoveFinal();
+					return obj;
+				} else{
+				
+					aux= this.node;
+					NO<T> aux2=aux;
+
+					while(pos>1){
+						aux2=aux;
+						aux=aux.prox;
+						pos--;
+					}
+					obj=aux.obj;
+					aux2.prox=aux.prox;	
+					return obj;
+				}
+	}
+
+
+	@Override
+	public T AlteraAt(int pos) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 
 }

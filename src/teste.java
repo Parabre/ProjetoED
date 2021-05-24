@@ -18,7 +18,8 @@ public class teste {
 		
 		clientes cli;
 		while(op!=99){
-			op=Integer.parseInt(JOptionPane.showInputDialog("1-Cadastrar cliente \n 2- Cadastrar aluguel \n3- Listar cliente \n4- Listar alugueis"));
+			op=Integer.parseInt(JOptionPane.showInputDialog("1- Cadastrar Cliente \n 2- Listar Cliente  \n 3- Alterar Cliente \n 4- Excluir Cliente\n "
+														   +"5- Cadastrar Aluguel \n 6- Listar Aluguel \n 7- Alterar Aluguel \n 8- Excluir Aluguel\n"));
 			switch(op){
 			case 1:
 				cli = new clientes();
@@ -32,6 +33,18 @@ public class teste {
 				
 				break;
 			case 2:
+				System.out.print(listCli.percorre());
+				break;
+				
+			case 3:
+				System.out.print(listCli.percorre());
+				break;
+			case 4:
+				int pos = Integer.parseInt(JOptionPane.showInputDialog("Posição do cliente"));
+				listCli.RemoveAt(pos);
+				
+			break;
+			case 5:
 				
 				aluguel al = new aluguel();
 				
@@ -48,17 +61,18 @@ public class teste {
 				break;
 				
 				
-			case 3:
-				
-				System.out.print(listCli.percorre());
-				break;
-				
-			case 4:
+			case 6:
 				
 				System.out.print(listAlug.percorre());
 				break;
 				
-			default:	
+			case 8:
+				pos = Integer.parseInt(JOptionPane.showInputDialog("Posição do cliente"));
+				listAlug.RemoveAt(pos);
+				break;
+				
+			default:
+				JOptionPane.showMessageDialog(null, "Menu inexistente, escolha outro");
 			break;
 			
 		}
