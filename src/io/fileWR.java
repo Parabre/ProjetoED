@@ -17,7 +17,6 @@ public class fileWR  {
 		 String text = obj.getAll() + '\n';
 		 
 	    try {
-	    	System.out.println(obj.nameClass());
 	    	
 	        arquivo = new FileWriter(new File(obj.nameClass()));
 	        arquivo.write(text);

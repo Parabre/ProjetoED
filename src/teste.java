@@ -71,6 +71,11 @@ public class teste {
 				listAlug.RemoveAt(pos);
 				break;
 				
+			case 9:
+				listCli.ordenar();
+				System.out.print("\n" + listCli.percorre());
+			break;
+				
 			default:
 				JOptionPane.showMessageDialog(null, "Menu inexistente, escolha outro");
 			break;

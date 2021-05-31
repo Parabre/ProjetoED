@@ -7,6 +7,8 @@ public class aluguel implements classeGenerica {
 	private String rgCliente;
 	private String horario;
 	private String lugar;
+	private int tamanho;
+	
 	
 	
 	public String getRg() {
@@ -48,5 +50,10 @@ public class aluguel implements classeGenerica {
 	public String nameClass() {
 		return "aluguel";
 	}
+
+	
+
+
+	
 	
 }
